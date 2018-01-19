@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import gitlabUrl from '../gitlab-url.txt'
 
-export function triggerDeploy ({ token, username, projectId, jobName }) {
+export function triggerDeploy ({ token, email, projectId, jobName }) {
     const gitlabApi = `${gitlabUrl}/${projectId}/`
     const headers = {
         'PRIVATE-TOKEN': token
@@ -17,21 +17,17 @@ export function triggerDeploy ({ token, username, projectId, jobName }) {
                 throw new Error(`Unexpected response from gitlab: ${JSON.stringify(response)}`)
             }
             const jobs = response
-            const myJobs = jobs.filter(job => job.user.username === username)
+            const myJobs = jobs.filter(job => job.commit.committer_email === email)
             const myJobsMatchingName = myJobs.filter(job => job.name === jobName)
             if (!myJobsMatchingName.length) {
                 throw new Error('No matching jobs! ' +
                     `jobs=${jobs.length} myJobs=${myJobs.length} myJobsMatchingName=${myJobsMatchingName.length}`)
             }
             const myLatestMatchingJob = myJobsMatchingName[0]
-            if (myLatestMatchingJob !== 'success') {
-                const playUrl = `${gitlabApi}jobs/${myLatestMatchingJob.id}/play`
-
-                return fetch(playUrl, {
-                    method: 'post',
-                    headers
-                })
-            }
-            return 'latest is a success'
+            const playUrl = `${gitlabApi}jobs/${myLatestMatchingJob.id}/play`
+            return fetch(playUrl, {
+                method: 'post',
+                headers
+            })
         })
 }

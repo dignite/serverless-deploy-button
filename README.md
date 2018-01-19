@@ -46,7 +46,7 @@ Example:
 - Body:
     {
         "token": "<Get-from-gitlab>",
-        "username": "<Get-from-gitlab>",
+        "email": "<Committer-email>",
         "projectId": <Get-from-gitlab, general settings section>,
         "jobName": "<Get-from-gitlab>"
     }

@@ -5,12 +5,12 @@ import { triggerDeploy } from './src/deploy-to-gitlab'
 export const trigger = (event, context, cb) => {
   const body = JSON.parse(event.body);
   const token = body.token;
-  const username = body.username;
+  const email = body.email;
   const projectId = body.projectId;
   const jobName = body.jobName;
   triggerDeploy({
     token,
-    username,
+    email,
     projectId,
     jobName
   })
