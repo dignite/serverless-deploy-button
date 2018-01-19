@@ -10,8 +10,6 @@ provider:
   runtime: nodejs6.10
 
 functions:
-  first:
-    handler: first.hello
   second:
     handler: second.hello
     events:
