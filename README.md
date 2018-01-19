@@ -24,6 +24,11 @@ Linux:
 - `export AWS_SECRET_ACCESS_KEY=`**KEY**
 - `export AWS_DEFAULT_REGION=`**REGION**
 
+
+## Gitlab Url
+
+Create a file `gitlab-url.txt` with the url in clear text.
+
 ## Deploy
 
 - `serverless deploy`

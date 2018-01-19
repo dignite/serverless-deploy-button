@@ -11,6 +11,10 @@ module.exports = {
       loaders: ['babel-loader'],
       include: __dirname,
       exclude: /node_modules/,
+    },
+    {
+      test: /\.txt$/,
+      use: 'raw-loader'
     }],
   },
   output: {
