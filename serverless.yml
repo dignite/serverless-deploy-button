@@ -10,9 +10,9 @@ provider:
   runtime: nodejs6.10
 
 functions:
-  second:
-    handler: second.hello
+  deploy:
+    handler: deploy.trigger
     events:
       - http:
-          method: get
-          path: second
+          method: post
+          path: deploy
