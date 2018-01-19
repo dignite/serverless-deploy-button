@@ -1,4 +1,5 @@
 import gitlabUrl from './gitlab-url.txt'
+import { triggerDeploy } from './src/deploy-to-gitlab'
 
 // eslint-disable-next-line import/prefer-default-export
 export const trigger = (event, context, cb) => {
@@ -7,18 +8,22 @@ export const trigger = (event, context, cb) => {
   const username = body.username;
   const projectId = body.projectId;
   const jobName = body.jobName;
-
-  const p = new Promise((resolve) => {
-    resolve('success');
-  });
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: `${body.token} - ${body.username} - ${body.projectId} - ${body.jobName} - ${gitlabUrl}`,
-      input: event,
-    }),
-  };
-  p
-    .then(() => cb(null, response))
-    .catch(e => cb(e));
+  triggerDeploy({
+    token,
+    username,
+    projectId,
+    jobName
+  })
+    .then(() => {
+      cb(null, response)
+    })
+    .catch(e => {
+      const response = {
+        statusCode: 500,
+        body: {
+          error: e.toString()
+        }
+      }
+      cb(null, response)
+    });
 };

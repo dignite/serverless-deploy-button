@@ -37,3 +37,16 @@ Linux:
 ## 2. Deploy
 
 - `serverless deploy`
+
+# Invoke
+
+Example:
+
+- Method: POST
+- Body:
+    {
+        "token": "<Get-from-gitlab>",
+        "username": "<Get-from-gitlab>",
+        "projectId": <Get-from-gitlab, general settings section>,
+        "jobName": "<Get-from-gitlab>"
+    }
