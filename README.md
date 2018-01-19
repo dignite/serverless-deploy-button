@@ -1,14 +1,24 @@
 # serverless-deploy-button
 Try out Serverless and build a deploy button endpoint to be used with a Flic button
 
-# Get started
+# Set up dependencies
 
-## Dependencies
+## 1. Install Dependencies
 
 - `npm install serverless -g`
 - `npm install`
 
-## AWS Credentials
+## 2. Gitlab Url
+
+Create a file `gitlab-url.txt` with the url in clear text.
+
+# Run locally
+
+`serverless offline start`
+
+# Deploy to AWS
+
+## 1. Set AWS Credentials
 
 This stores the credentials in the shell session only.
 
@@ -24,11 +34,6 @@ Linux:
 - `export AWS_SECRET_ACCESS_KEY=`**KEY**
 - `export AWS_DEFAULT_REGION=`**REGION**
 
-
-## Gitlab Url
-
-Create a file `gitlab-url.txt` with the url in clear text.
-
-## Deploy
+## 2. Deploy
 
 - `serverless deploy`
